@@ -13,29 +13,38 @@ class MyDialog extends StatefulWidget {
   _MyDialogState createState() => _MyDialogState();
 }
 
-enum DialogAction{
-  yes,
-  no
-}
-
 class _MyDialogState extends State<MyDialog> {
   String _inputValue = "";
 
-  void _alertResult(DialogAction action){
-    print("Tu seleccion fue $action");
-  }
+  Widget siButton = FlatButton(
+    child: Text("Si"),
+    onPressed: () {
+      null;
+    },
+  );
+
+  Widget noButton = FlatButton(
+    child: Text("No"),
+    onPressed: () {
+      null;
+    },
+  );
 
   void _showAlert(String value) {
     AlertDialog dialog = new AlertDialog(
       content: new Text(value),
       actions: <Widget>[
-        new FlatButton(onPressed: {_alertResult(DialogAction.yes);}, child: new Text("Si"),),
-        new FlatButton(onPressed: {_alertResult(DialogAction.no);}, child: new Text("No"),),
-
+        siButton,
+        noButton,
       ],
     );
 
-    showDialog(context: context, builder: dialog);
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return dialog;
+      },
+    );
   }
 
   void _onChanged(String value) {
